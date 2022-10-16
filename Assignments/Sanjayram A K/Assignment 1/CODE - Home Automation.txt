@@ -1,0 +1,82 @@
+int x,y,t ;
+void setup ()
+{
+  pinMode( 8, INPUT);
+  pinMode( 5, OUTPUT);
+  pinMode (A5, INPUT);
+  pinMode (6,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(A4,INPUT);
+  Serial.begin(9600);
+}
+void loop ()
+{
+  float temp = analogRead(A4);
+  float t = map(analogRead(A4),20,358,-40,125);
+  if(t>27)
+  {
+    digitalWrite(4,HIGH);
+  }
+  else
+  {
+    digitalWrite(4,LOW);
+  }
+  float LDR = map(analogRead(A5),54,975,255,0);
+  int percent = map(analogRead(A5),54,975,0,100);
+  if(analogRead(A5)<900){
+    digitalWrite(6,HIGH);
+  }
+  else
+  {
+    digitalWrite(6,LOW);
+  }
+  x= digitalRead(8);
+  
+  if (x<1)
+  {
+    digitalWrite(5,0);
+  }
+  else
+  {
+    if ((y<550) && (t>32))
+    {
+      {digitalWrite(5,1);
+       digitalWrite(2,1);}
+      delay(4000);
+    }
+    
+    else
+    {
+     	 if ((y>550) && (t>32))
+    	{
+           {digitalWrite(5,0);
+            }
+           delay(4000);
+           
+    	}
+    	
+      		else
+    		{
+      			if ((y<550) && (t<32))
+    			{
+                  {digitalWrite(5,1);
+                }
+                  delay(4000);
+                  
+    			}
+    				
+        			else
+        			{
+                      {digitalWrite(5,0);
+                       }
+                      delay(1000);
+        			}
+            }
+    }
+          
+      
+      
+    
+  }
+}
+     
